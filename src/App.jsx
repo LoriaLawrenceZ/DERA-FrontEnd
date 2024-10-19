@@ -1,40 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Header from './components/Header/Header'
+import { useState, useEffect } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import Header from "./components/Header/Header";
 
 function App() {
-
+    const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState("");
 
     const handleSendMessageBtn = () => {
-        if(input.value == "" || input.value == null) return;
-    }
+        if (userInput.trim() === "") return;
 
-  return (
-    <div className="page">
+        const userMessage = { role: "user", text: userInput };
+        setMessages((prevMessages) => [...prevMessages, userMessage]);
+        setUserInput("");
+
+        // API OpenAI
+        const derResponse = "Sou um filha da puta";
+
+        setMessages((prevMessages) =>
+            prevMessages.map((msg, index) =>
+                index === prevMessages.length - 1
+                    ? { ...msg, text: derResponse.replace(/\n/g, "<br>") }
+                    : msg,
+            ),
+        );
+    };
+
+    const scrollToRecentMessages = () => {
+        const chatContainer = document.getElementById("chat-messages-container");
+        if (chatContainer) {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+    };
+
+    useEffect(() => {
+        scrollToRecentMessages();
+    }, [messages]);
+
+    return (
+        <div className="page">
             <Header />
 
-            <article className='chatbot-container'>
-                <section className='chat-messages-container'>
+            <article className="chatbot-container">
+                <section
+                    className="chat-messages-container"
+                    id="chat-messages-container"
+                >
                     <p className="message der-message">Sou o Der</p>
                     <p className="message user-message">Sou o User</p>
                 </section>
 
-                <section className='input-container'>
-                    <input
+                <section className="input-container">
+                    <textarea
                         type="text"
-                        name='user-input'
-                        className='user-input'
-                        id='user-input'
-                        placeholder='Fala com o DER aí'
+                        name="user-input"
+                        className="user-input"
+                        id="user-input"
+                        placeholder="Fala com o DER aí"
                         autoFocus={true}
                         value={userInput}
                         onChange={(event) => setUserInput(event.target.value)}
                     />
-                    
-                    <button 
+
+                    <button
+                        type="submit"
                         id="user-input-btn"
                         onClick={handleSendMessageBtn}
                     >
@@ -42,8 +72,8 @@ function App() {
                     </button>
                 </section>
             </article>
-    </div>
-  )
+        </div>
+    );
 }
 
-export default App
+export default App;
