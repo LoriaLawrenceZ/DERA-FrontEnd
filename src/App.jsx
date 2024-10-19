@@ -18,6 +18,8 @@ function App() {
         // API OpenAI
         const derResponse = "Sou um filha da puta";
 
+        console.log("oi");
+
         setMessages((prevMessages) =>
             prevMessages.map((msg, index) =>
                 index === prevMessages.length - 1
@@ -48,7 +50,13 @@ function App() {
                     id="chat-messages-container"
                 >
                     <p className="message der-message">Sou o Der</p>
-                    <p className="message user-message">Sou o User</p>
+                    {messages.map((msg, index) => (
+                        <p
+                            key={index}
+                            className={`chat__bolha chat__bolha--${msg.sender}`}
+                            dangerouslySetInnerHTML={{ __html: msg.text }}
+                        ></p>
+                    ))}
                 </section>
 
                 <section className="input-container">
