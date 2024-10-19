@@ -55,14 +55,16 @@ function App() {
                     className="chat-messages-container"
                     id="chat-messages-container"
                 >
-                    <p className="message der-message">Sou o Der</p>
-                    {messages.map((msg, index) => (
-                        <p
-                            key={index}
-                            className={`message ${msg.role == "user" ? "user-message" : "der-message"}`}
-                            dangerouslySetInnerHTML={{ __html: msg.text }}
-                        ></p>
-                    ))}
+                    <div className="messages-container">
+                        <p className="message der-message">Sou o Der</p>
+                        {messages.map((msg, index) => (
+                            <p
+                                key={index}
+                                className={`message ${msg.role == "user" ? "user-message" : "der-message"}`}
+                                dangerouslySetInnerHTML={{ __html: msg.text }}
+                            ></p>
+                        ))}
+                    </div>
                 </section>
 
                 <section className="input-container">

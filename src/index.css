@@ -22,11 +22,11 @@
   /*---=| COLORS |=---*/
   /*-| Original |-*/
   /*Black n White*/
-  --white-gray: #F9F9F9FF;
-  --light-gray: #CCCCCCFF;
-  --medium-gray:  #8C8C8CFF;
-  --dark-gray: #454545FF;
-  --black-gray: #191919FF;
+  --white-gray: #f9f9f9ff;
+  --light-gray: #ccccccff;
+  --medium-gray: #8c8c8cff;
+  --dark-gray: #454545ff;
+  --black-gray: #191919ff;
   /*Colors*/
   --medium-red: #ff0000;
   --medium-green: #00ff00;
@@ -42,8 +42,8 @@
   --medium-red-rgb: 255, 0, 0;
   --medium-green-rgb: 0, 255, 0;
 
-  --all-500ms-custom: all .5s cubic-bezier(0.85, 0.15, 0.15, 0.85);
-  --all-200ms-ease-in-out: all .2s cubic-bezier(0.85, 0.15, 0.15, 0.85);
+  --all-500ms-custom: all 0.5s cubic-bezier(0.85, 0.15, 0.15, 0.85);
+  --all-200ms-ease-in-out: all 0.2s cubic-bezier(0.85, 0.15, 0.15, 0.85);
 }
 
 /*-----===| index.html |===-----*/
@@ -58,9 +58,18 @@ body {
   --dot-size: 1px;
   --dot-space: 22px;
   background:
-          linear-gradient(90deg, var(--black-gray) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-          linear-gradient(var(--black-gray) calc(var(--dot-space) - var(--dot-size)), transparent 1%) center / var(--dot-space) var(--dot-space),
-          var(--medium-gray);
+    linear-gradient(
+        90deg,
+        var(--black-gray) calc(var(--dot-space) - var(--dot-size)),
+        transparent 1%
+      )
+      center / var(--dot-space) var(--dot-space),
+    linear-gradient(
+        var(--black-gray) calc(var(--dot-space) - var(--dot-size)),
+        transparent 1%
+      )
+      center / var(--dot-space) var(--dot-space),
+    var(--medium-gray);
 }
 
 #root {
@@ -69,7 +78,24 @@ body {
 
 /*-----===| UNIVERSAL EFFECTS |===-----*/
 .glass-effect {
-  background: linear-gradient(145deg, rgba(26, 26, 26, 0.7), rgba(26, 26, 26, 0.7));
+  background: linear-gradient(
+    145deg,
+    rgba(26, 26, 26, 0.7),
+    rgba(26, 26, 26, 0.7)
+  );
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
+}
+
+/*-----===| Transparent ScrollBar |===-----*/
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* ou o fundo desejado */
+}
+/* Firefox */
+body {
+  scrollbar-width: none; /* Remove a barra no Firefox */
+}
+body::-webkit-scrollbar {
+  display: none; /* Remove no Chrome/Safari */
 }
