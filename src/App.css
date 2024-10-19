@@ -18,7 +18,8 @@
 }
 
 .chat-messages-container {
-  height: 90%;
+  height: 80%;
+  max-height: 80%;
   max-width: 720px;
   width: 100%;
   display: flex;
