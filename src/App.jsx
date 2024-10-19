@@ -15,11 +15,11 @@ function App() {
         setMessages((prevMessages) => [...prevMessages, userMessage]);
         setUserInput("");
 
+        const derMessage = { role: "der", text: "Analisando..." };
+        setMessages((prevMessages) => [...prevMessages, derMessage]);
+
         // API OpenAI
         const derResponse = "Sou um filha da puta";
-
-        console.log("oi");
-
         setMessages((prevMessages) =>
             prevMessages.map((msg, index) =>
                 index === prevMessages.length - 1
@@ -53,7 +53,7 @@ function App() {
                     {messages.map((msg, index) => (
                         <p
                             key={index}
-                            className={`chat__bolha chat__bolha--${msg.sender}`}
+                            className={`message ${msg.role == "user" ? "user-message" : "der-message"}`}
                             dangerouslySetInnerHTML={{ __html: msg.text }}
                         ></p>
                     ))}
