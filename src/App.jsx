@@ -19,7 +19,7 @@ function App() {
         setMessages((prevMessages) => [...prevMessages, derMessage]);
 
         // API OpenAI
-        const derResponse = "Sou um filha da puta";
+        const derResponse = "Sou o Der Agropesca Jacaré";
         setMessages((prevMessages) =>
             prevMessages.map((msg, index) =>
                 index === prevMessages.length - 1
@@ -41,10 +41,10 @@ function App() {
     }, [messages]);
 
     const handleKeyUp = (event) => {
-        if (event.key === 'Enter') {
+        if (event.key === "Enter") {
             handleSendMessage();
         }
-    }
+    };
 
     return (
         <div className="page">
@@ -80,11 +80,7 @@ function App() {
                         onKeyUp={handleKeyUp}
                     />
 
-                    <button
-                        type="submit"
-                        id="user-input-btn"
-                        onClick={handleSendMessage}
-                    >
+                    <button type="submit" id="user-input-btn" onClick={handleSendMessage}>
                         &gt;
                     </button>
                 </section>
