@@ -22,7 +22,9 @@
   max-height: 80%;
   max-width: 720px;
   width: 100%;
-    overflow: auto;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .messages-container {
