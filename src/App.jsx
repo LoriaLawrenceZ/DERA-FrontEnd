@@ -8,7 +8,7 @@ function App() {
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState("");
 
-    const handleSendMessageBtn = () => {
+    const handleSendMessage = () => {
         if (userInput.trim() === "") return;
 
         const userMessage = { role: "user", text: userInput };
@@ -40,6 +40,12 @@ function App() {
         scrollToRecentMessages();
     }, [messages]);
 
+    const handleKeyUp = (event) => {
+        if (event.key === 'Enter') {
+            handleSendMessage();
+        }
+    }
+
     return (
         <div className="page">
             <Header />
@@ -69,12 +75,13 @@ function App() {
                         autoFocus={true}
                         value={userInput}
                         onChange={(event) => setUserInput(event.target.value)}
+                        onKeyUp={handleKeyUp}
                     />
 
                     <button
                         type="submit"
                         id="user-input-btn"
-                        onClick={handleSendMessageBtn}
+                        onClick={handleSendMessage}
                     >
                         &gt;
                     </button>
