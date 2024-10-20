@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Header from "./components/Header/Header";
 
@@ -19,7 +17,7 @@ function App() {
         setMessages((prevMessages) => [...prevMessages, derMessage]);
 
         // API OpenAI
-        const derResponse = await fetch("https://dera-backend.vercel.app/chat", {
+        const derResponse = await fetch("/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -75,7 +73,6 @@ function App() {
 
                 <section className="input-container">
                     <textarea
-                        type="text"
                         name="user-input"
                         className="user-input"
                         id="user-input"
