@@ -22,6 +22,7 @@ function App() {
             headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin": "*",
+                "Authorization": "Bearer " + import.meta.env.OPENAI_API_KEY,
             },
             body: JSON.stringify({ msg: userMessage }),
         });
