@@ -17,7 +17,7 @@ function App() {
         setMessages((prevMessages) => [...prevMessages, derMessage]);
 
         // API OpenAI
-        const derResponse = await fetch("/chat", {
+        const derResponse = await fetch("https://dera-backend.vercel.app/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
