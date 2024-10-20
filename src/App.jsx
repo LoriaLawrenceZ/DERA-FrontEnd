@@ -8,7 +8,7 @@ function App() {
     const [messages, setMessages] = useState([]);
     const [userInput, setUserInput] = useState("");
 
-    const handleSendMessage = () => {
+    const handleSendMessage = async () => {
         if (userInput.trim() === "") return;
 
         const userMessage = { role: "user", text: userInput };
@@ -19,12 +19,12 @@ function App() {
         setMessages((prevMessages) => [...prevMessages, derMessage]);
 
         // API OpenAI
-        const derResponse = await fetch("https://dera-backend-p600epkej-lorialawrencezs-projects.vercel.app", {
+        const derResponse = await fetch("https://dera-backend-p600epkej-lorialawrencezs-projects.vercel.app/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringfy({msg: userMessage})
+            body: JSON.stringify({msg: userMessage})
         })
         setMessages((prevMessages) =>
             prevMessages.map((msg, index) =>
