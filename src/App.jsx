@@ -18,7 +18,7 @@ function App() {
 
         // API OpenAI
         try {
-            const response = await fetch("http://localhost:5000/chat", {
+            const response = await fetch("http://dera-backend.vercel.app/chat", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
