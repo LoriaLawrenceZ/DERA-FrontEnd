@@ -19,7 +19,13 @@ function App() {
         setMessages((prevMessages) => [...prevMessages, derMessage]);
 
         // API OpenAI
-        const derResponse = "Sou o Der Agropesca Jacaré";
+        const derResponse = await fetch("https://dera-backend-p600epkej-lorialawrencezs-projects.vercel.app", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringfy({msg: userMessage})
+        })
         setMessages((prevMessages) =>
             prevMessages.map((msg, index) =>
                 index === prevMessages.length - 1
