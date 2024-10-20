@@ -19,13 +19,13 @@ function App() {
         setMessages((prevMessages) => [...prevMessages, derMessage]);
 
         // API OpenAI
-        const derResponse = await fetch("https://dera-backend-p600epkej-lorialawrencezs-projects.vercel.app/chat", {
+        const derResponse = await fetch("https://dera-backend.vercel.app/chat", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify({msg: userMessage})
-        })
+            body: JSON.stringify({ msg: userMessage }),
+        });
         setMessages((prevMessages) =>
             prevMessages.map((msg, index) =>
                 index === prevMessages.length - 1
