@@ -17,22 +17,32 @@ function App() {
         setMessages((prevMessages) => [...prevMessages, derMessage]);
 
         // API OpenAI
-        const derResponse = await fetch("https://dera-backend.vercel.app/chat", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Access-Control-Allow-Origin": "*",
-                "Authorization": "Bearer " + import.meta.env.OPENAI_API_KEY,
-            },
-            body: JSON.stringify({ msg: userMessage }),
-        });
-        setMessages((prevMessages) =>
-            prevMessages.map((msg, index) =>
-                index === prevMessages.length - 1
-                    ? { ...msg, text: derResponse.replace(/\n/g, "<br>") }
-                    : msg,
-            ),
-        );
+        try {
+            const response = await fetch("http://localhost:5000/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ msg: userMessage }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+
+            const data = await response.json();
+            const messageText = data.response ? data.response.replace(/\n/g, "<br>") : "No message received";
+
+            setMessages((prevMessages) =>
+                prevMessages.map((msg, index) =>
+                    index === prevMessages.length - 1
+                        ? { ...msg, text: messageText }
+                        : msg,
+                ),
+            );
+        } catch (error) {
+            console.error("Error fetching the message:", error);
+        }
     };
 
     const scrollToRecentMessages = () => {
